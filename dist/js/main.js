@@ -21,15 +21,37 @@ $(document).ready(async function () {
       "copyHtml5",
       "excelHtml5",
       "csvHtml5",
+      // {
+      //   extend: "pdfHtml5",
+      //   customize: function (doc) {
+      //     doc.content.splice(1, 0, {
+      //       margin: [0, 0, 0, 12],
+      //       alignment: "center",
+      //       image: koppp,
+      //       width: 560,
+      //     });
+      //   },
+      // },
       {
-        extend: "pdfHtml5",
-        customize: function (doc) {
-          doc.content.splice(1, 0, {
-            margin: [0, 0, 0, 12],
-            alignment: "center",
-            image: koppp,
-            width: 560,
-          });
+        extend: "print",
+        title: "",
+        pageSize: "A4",
+        footer: false,
+        header: false,
+        customize: function (win) {
+          const head = document.createElement("div");
+          head.id = "head";
+          head.innerHTML = `<div class="row"> 
+          <div class="col-md-12"> <img src="${koppp}" width="100%">
+          
+      </div> </div>
+      <div class="row"> 
+          <div class="col-md-12">
+          <h1 style="text-align:center; font-size:20px;">Laporan Absensi Karyawan
+         
+          </h1>
+          </div> </div>`;
+          $(win.document.body).prepend(head);
         },
       },
     ],
