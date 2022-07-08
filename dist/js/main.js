@@ -30,6 +30,7 @@ function printDiv(divName) {
   $(document.body).prepend(head);
   setTimeout(() => {
     window.print();
+    document.body.innerHTML = originalContents;
   }, 1000);
 }
 $(document).ready(async function () {
