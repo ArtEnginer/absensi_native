@@ -25,6 +25,7 @@ if (isset($_POST['cetak'])):
 <?php
 else:
     $insertSql = "INSERT INTO gaji (rekening_no, rekening_bank, kehadiran, gaji_pokok, gaji_bonus, gaji_lembur, bpjs_kesehatan, bpjs_tenaker, pinjaman, biaya_transfer, id_pegawai, tanggal) value (:rekening_no, :rekening_bank, :kehadiran, :gaji_pokok, :gaji_bonus, :gaji_lembur, :bpjs_kesehatan, :bpjs_tenaker, :pinjaman, :biaya_transfer, :id_pegawai, :tanggal)";
+    $db = $database->getConnection();
     $stmt = $db->prepare($insertSql);
     if ($stmt->execute($_POST)) {
         $_SESSION['hasil'] = true;
