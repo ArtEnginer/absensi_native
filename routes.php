@@ -137,6 +137,23 @@ if (isset($_GET['page'])) {
                         file_exists('pages/admin/pegawai/pegawaidelete.php') ? include
                                 'pages/admin/pegawai/pegawaidelete.php' : include "pages/404.php";
                         break;
+                        // Gaji
+                case 'gaji':
+                        file_exists('pages/admin/gaji/index.php') ? include
+                                'pages/admin/gaji/index.php' : include "pages/404.php";
+                        break;
+                case 'gajicreate':
+                        file_exists('pages/admin/gaji/add.php') ? include
+                                'pages/admin/gaji/add.php' : include "pages/404.php";
+                        break;
+                case 'gajiupdate':
+                        file_exists('pages/admin/gaji/update.php') ? include
+                                'pages/admin/gaji/update.php' : include "pages/404.php";
+                        break;
+                case 'gajidelete':
+                        file_exists('pages/admin/gaji/delete.php') ? include
+                                'pages/admin/gaji/delete.php' : include "pages/404.php";
+                        break;
                         // kegiatan
                 case 'kread':
                         file_exists('pages/admin/kegiatan/kegiatanread.php') ? include
