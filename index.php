@@ -1,7 +1,8 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Jakarta');
 if (!isset($_SESSION['username'])) {
-  header('location:login_view.php');
+    header('location:login_view.php');
 } ?>
 <!DOCTYPE html>
 

@@ -1,16 +1,30 @@
-<?php include_once "partials/cssdatatables.php" ?>
+<?php include_once "partials/cssdatatables.php"?>
+<?php include "database/sql.php";
+$gaji = [];
+if ($result = $mysqli->query("SELECT * FROM gaji INNER JOIN pegawai ON gaji.id_pegawai = pegawai.id_pegawai")) {
+    while ($obj = $result->fetch_object()) {
+        $obj->gaji_total = $obj->gaji_pokok + $obj->gaji_bonus + $obj->gaji_lembur;
+        $obj->gaji_kurang = $obj->bpjs_kesehatan + $obj->bpjs_tenaker + $obj->pinjaman + $obj->biaya_transfer;
+        $obj->gaji_bersih = $obj->gaji_total - $obj->gaji_kurang;
+        $gaji[] = $obj;
+    }
+    $result->free_result();
+}
+
+$mysqli->close();
+?>
 <div class="content-header">
     <div class="container-fluid">
         <?php
-                if (isset($_SESSION["hasil"])) {
-                        if ($_SESSION["hasil"]) {
-                ?>
+if (isset($_SESSION["hasil"])) {
+    if ($_SESSION["hasil"]) {
+        ?>
         <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             <h5><i class="icon fas fa-check"></i> Berhasil</h5>
             <?php echo $_SESSION['pesan'] ?>
         </div>
-        <?php } else { ?>
+        <?php } else {?>
         <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             <h5><i class="icon fas fa-ban"></i> Gagal</h5>
@@ -18,11 +32,11 @@
         </div>
 
         <?php
-                        }
-                        unset($_SESSION['hasil']);
-                        unset($_SESSION['pesan']);
-                }
-                ?>
+}
+    unset($_SESSION['hasil']);
+    unset($_SESSION['pesan']);
+}
+?>
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1 class="m-0"> Gaji</h1>
@@ -58,34 +72,28 @@
                 </thead>
                 <tbody>
                     <?php
-                                        $database = new Database();
-                                        $db = $database->getConnection();
-
-                                        $selectSql = "SELECT * FROM gaji ";
-                                        $stmt = $db->prepare($selectSql);
-                                        $stmt->execute();
-                                        $no = 1;
-                                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                        ?>
+$no = 1;
+foreach ($gaji as $gj): ?>
                     <tr class="text-center">
-                        <td><?php echo $no++ ?></td>
-                        <td><?php echo $row['tanggal'] ?></td>
+                        <td><?=$no++?></td>
+                        <td><?=$gj->tanggal?></td>
+                        <td><?=$gj->nm_pegawai?></td>
+                        <td><?="Rp. " . number_format($gj->gaji_bersih)?>
+                        </td>
                         <td>
-                            <a href="?page=gajidetail&id=<?php echo $row['id'] ?>" class="btn btn-primary btn-sm mr-1">
+                            <a href="?page=gajidetail&id=<?=$gj->id?>" class="btn btn-primary btn-sm mr-1">
                                 <i class="fa fa-eye"></i> Detail
                             </a>
                         </td>
                     </tr>
-                    <?php
-                                        }
-                                        ?>
+                    <?php endforeach?>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-<?php include_once "partials/scripts.php" ?>
-<?php include_once "partials/scripstdatatables.php" ?>
+<?php include_once "partials/scripts.php"?>
+<?php include_once "partials/scripstdatatables.php"?>
 <script>
 $(function() {
     $('#mytable').DataTable()
