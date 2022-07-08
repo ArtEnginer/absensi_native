@@ -117,7 +117,7 @@
                                                                 <?php
                                                                 elseif ($row["status1"] == "Disetujui") :
                                                                 ?>
-                                                                        <a href="?page=cuticetak&id_cuti=<?php echo $row['id_cuti'] ?>" class="btn btn-primary btn-sm mr-1">
+                                                                        <a href="?page=kecetak&id_cuti=<?php echo $row['id_cuti'] ?>" class="btn btn-primary btn-sm mr-1">
                                                                                 <i class="fa fa-print" title="Cetak"></i>
                                                                         </a>
                                                                 <?php endif; ?>

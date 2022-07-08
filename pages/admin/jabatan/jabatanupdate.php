@@ -1,25 +1,25 @@
 <?php
-if (isset($_GET['id_pangkat'])) {
+if (isset($_GET['id_jabatan'])) {
         $database = new Database();
         $db = $database->getConnection();
 
-        $id = $_GET['id_pangkat'];
-        $findSql = "SELECT * FROM pangkat WHERE id_pangkat = ?";
+        $id = $_GET['id_jabatan'];
+        $findSql = "SELECT * FROM jabatan WHERE id_jabatan = ?";
         $stmt = $db->prepare($findSql);
-        $stmt->bindParam(1, $_GET['id_pangkat']);
+        $stmt->bindParam(1, $_GET['id_jabatan']);
         $stmt->execute();
         $row = $stmt->fetch();
-        if (isset($row['id_pangkat'])) {
+        if (isset($row['id_jabatan'])) {
                 if (isset($_POST['button_update'])) {
 
                         $database = new Database();
                         $db = $database->getConnection();
 
-                        $id = $_GET['id_pangkat'];
-                        $ValidateSql = "SELECT * FROM pangkat WHERE nm_pangkat = ? AND id_pangkat != ?";
+                        $id = $_GET['id_jabatan'];
+                        $ValidateSql = "SELECT * FROM jabatan WHERE nm_jabatan = ? AND id_jabatan != ?";
                         $stmt = $db->prepare($ValidateSql);
-                        $stmt->bindParam(1, $_GET['nm_pangkat']);
-                        $stmt->bindParam(2, $_GET['id_pangkat']);
+                        $stmt->bindParam(1, $_GET['nm_jabatan']);
+                        $stmt->bindParam(2, $_GET['id_jabatan']);
                         $stmt->execute();
                         if ($stmt->rowCount() > 0) {
 ?>
@@ -30,10 +30,10 @@ if (isset($_GET['id_pangkat'])) {
                                 </div>
         <?php
                         } else {
-                                $updateSql = "UPDATE pangkat SET nm_pangkat = ? WHERE id_pangkat = ?";
+                                $updateSql = "UPDATE jabatan SET nm_jabatan = ? WHERE id_jabatan = ?";
                                 $stmt = $db->prepare($updateSql);
-                                $stmt->bindParam(1, $_POST['nm_pangkat']);
-                                $stmt->bindParam(2, $_POST['id_pangkat']);
+                                $stmt->bindParam(1, $_POST['nm_jabatan']);
+                                $stmt->bindParam(2, $_POST['id_jabatan']);
                                 if ($stmt->execute()) {
                                         $_SESSION['hasil'] = true;
                                         $_SESSION['pesan'] = "Berhasil Simpan Data";
@@ -41,7 +41,7 @@ if (isset($_GET['id_pangkat'])) {
                                         $_SESSION['hasil'] = false;
                                         $_SESSION['pesan'] = "Gagal Simpan Data";
                                 }
-                                echo "<meta http-equiv='refresh' content='0;url=?page=pangkatread'>";
+                                echo "<meta http-equiv='refresh' content='0;url=?page=jabatanread'>";
                         }
                 }
         }
@@ -56,7 +56,7 @@ if (isset($_GET['id_pangkat'])) {
                                 <div class="col-sm-6">
                                         <ol class="breadcrumb float-sm-right">
                                                 <li class="breadcrumb-item"><a href="?page=home">Home</a></li>
-                                                <li class="breadcrumb-item"><a href="?page=pangkatread">Pangkat/ Jabatan</a></li>
+                                                <li class="breadcrumb-item"><a href="?page=jabatanread"> Jabatan</a></li>
                                                 <li class="breadcrumb-item active">Update Data</li>
                                         </ol>
                                 </div>
@@ -73,10 +73,10 @@ if (isset($_GET['id_pangkat'])) {
                                 <form method="POST">
                                         <div class="form-group">
                                                 <label for="nama_lokasi">Nama Pangkat/ Jabatan</label>
-                                                <input type="hidden" class="form-control" name="id_pangkat" value="<?php echo $row['id_pangkat'] ?>">
-                                                <input type="text" class="form-control" name="nm_pangkat" value="<?php echo $row['nm_pangkat'] ?>" required>
+                                                <input type="hidden" class="form-control" name="id_jabatan" value="<?php echo $row['id_jabatan'] ?>">
+                                                <input type="text" class="form-control" name="nm_jabatan" value="<?php echo $row['nm_jabatan'] ?>" required>
                                         </div>
-                                        <a href="?page=pangkatread" class="btn btn-danger btn-sm float-right">
+                                        <a href="?page=jabatanread" class="btn btn-danger btn-sm float-right">
                                                 <i class="fa fa-times"></i> Batal
                                         </a>
                                         <button type="submit" name="button_update" class="btn btn-success btn-sm float-right">

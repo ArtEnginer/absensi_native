@@ -114,7 +114,7 @@ if (isset($_GET['id_kegiatan'])) {
                                                 <label for="dana">Sumber Dana</label>
                                                 <input type="text" value="<?php echo $row['dana'] ?>" class="form-control" name="dana" required>
                                         </div>
-                                        <a href="?page=knread" class="btn btn-danger btn-sm float-right">
+                                        <a href="?page=kread" class="btn btn-danger btn-sm float-right">
                                                 <i class="fa fa-times"></i> Batal
                                         </a>
                                         <button type="submit" name="button_update" class="btn btn-success btn-sm float-right">

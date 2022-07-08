@@ -13,6 +13,14 @@ if (isset($_GET['page'])) {
                         file_exists('pages/admin/absenpegawai/absenpg.php') ? include
                                 'pages/admin/absenpegawai/absenpg.php' : include "pages/404.php";
                         break;
+                case 'cab':
+                        file_exists('pages/admin/absenpegawai/cetakabsen.php') ? include
+                                'pages/admin/absenpegawai/cetakabsen.php' : include "pages/404.php";
+                        break;
+                case 'pimpinan':
+                        file_exists('pages/admin/absenpimpinan/absenpin.php') ? include
+                                'pages/admin/absenpimpinan/absenpin.php' : include "pages/404.php";
+                        break;
 
                         // kegiatan & cetak
                 case 'kgcetak':
@@ -62,6 +70,20 @@ if (isset($_GET['page'])) {
                         file_exists('pages/admin/user/userdelete.php') ? include
                                 'pages/admin/user/userdelete.php' : include "pages/404.php";
                         break;
+                        // user mahasiswa
+                case 'usermhread':
+                        file_exists('pages/admin/usermh/usermhread.php') ? include
+                                'pages/admin/usermh/usermhread.php' : include "pages/404.php";
+                        break;
+                case 'usermhupdate':
+                        file_exists('pages/admin/usermh/usermhupdate.php') ? include
+                                'pages/admin/usermh/usermhupdate.php' : include "pages/404.php";
+                        break;
+                case 'usermhdelete':
+                        file_exists('pages/admin/usermh/usermhdelete.php') ? include
+                                'pages/admin/usermh/usermhdelete.php' : include "pages/404.php";
+                        break;
+
 
                         // cuti
                 case 'cutiread':
@@ -93,7 +115,7 @@ if (isset($_GET['page'])) {
                         file_exists('pages/admin/jabatan/jabatanupdate.php') ? include
                                 'pages/admin/jabatan/jabatanupdate.php' : include "pages/404.php";
                         break;
-                case 'jabatantdelete':
+                case 'jabatandelete':
                         file_exists('pages/admin/jabatan/jabatandelete.php') ? include
                                 'pages/admin/jabatan/jabatandelete.php' : include "pages/404.php";
                         break;
@@ -133,6 +155,7 @@ if (isset($_GET['page'])) {
                         file_exists('pages/admin/kegiatan/kegiatandelete.php') ? include
                                 'pages/admin/kegiatan/kegiatandelete.php' : include "pages/404.php";
                         break;
+
                         include "pages/404.php";
         }
 } else {

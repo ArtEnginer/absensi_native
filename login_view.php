@@ -35,7 +35,7 @@
         }
     ?>
     <div class="card-header text-center">
-
+<img src="dist/img/bpjs.png" alt="" sizes="20%">
       <a href="index.php" class="h1"><b>Log In</b>| BPJS</a>
     </div>
     <div class="card-body">

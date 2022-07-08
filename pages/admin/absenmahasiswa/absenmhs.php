@@ -7,14 +7,14 @@ $jamSekarang = date('H:i:s');
 // Ambil data absensi
 $id = $_SESSION['id_pegawai'];
 
-$query = $mysqli->query("SELECT * FROM tb_absen WHERE id_pegawai='$_SESSION[id_pegawai]' AND tanggal='$tanggal'");
-$query2 = $mysqli->query("SELECT * FROM tb_absen WHERE tanggal LIKE '%" . date('m-Y') . "'");
+$query = $mysqli->query("SELECT * FROM tb_absenmhs WHERE id_pegawai='$_SESSION[id_pegawai]' AND tanggal='$tanggal'");
+$query2 = $mysqli->query("SELECT * FROM tb_absenmhs WHERE tanggal LIKE '%" . date('m-Y') . "'");
 $data = $query->fetch_assoc();
 
 if (isset($_POST['export'])) {
-    $queryexport = "SELECT * FROM tb_absen WHERE tanggal LIKE '%" . $_POST['export_tahun'] . "'";
+    $queryexport = "SELECT * FROM tb_absenmhs WHERE tanggal LIKE '%" . $_POST['export_tahun'] . "'";
     if ($_POST['export_bulan'] > 0) {
-        $queryexport = "SELECT * FROM tb_absen WHERE tanggal LIKE '%" . $_POST['export_bulan'] . "-" . $_POST['export_tahun'] . "'";
+        $queryexport = "SELECT * FROM tb_absenmhs WHERE tanggal LIKE '%" . $_POST['export_bulan'] . "-" . $_POST['export_tahun'] . "'";
         echo 'Bulan Lebih Besar Dari 0';
     }
     if ($_POST['export_id'] > 0) {
@@ -28,7 +28,7 @@ if (isset($_POST['masuk'])) {
     if ($data) {
         echo '<script>alert("anda sudah absen masuk untuk hari ini, semangat sampai pulang ya");history.go(-1);</script></script>';
     } else {
-        $res =  mysqli_query($konek, "INSERT INTO tb_absen SET id_pegawai='$id', tanggal='$tanggal', jam_masuk= '$jamSekarang'");
+        $res =  mysqli_query($konek, "INSERT INTO tb_absenmhs SET id_pegawai='$id', tanggal='$tanggal', jam_masuk= '$jamSekarang'");
         echo '<script>alert("terima kasih");history.go(-1);</script>';
     }
 }
@@ -36,7 +36,7 @@ if (isset($_POST['pulang'])) {
     if ($data['jam_pulang']) {
         echo '<script>alert("anda sudah absen untuk hari ini, absen lagi besok!");history.go(-1);</script>';
     } else {
-        $res =  mysqli_query($konek, "UPDATE tb_absen SET jam_pulang='$jamSekarang' WHERE id_absen ='" . $data['id_absen'] . "' ");
+        $res =  mysqli_query($konek, "UPDATE tb_absenmhs SET jam_pulang='$jamSekarang' WHERE id_absenmhs ='" . $data['id_absenmhs'] . "' ");
         echo '<script>alert("terima kasih");history.go(-1);</script>';
     }
 }
@@ -52,7 +52,7 @@ if (isset($_POST['pulang'])) {
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="?page=home">Home</a></li>
-                    <li class="breadcrumb-item"><a href="?page=pegawairead">Absen</a></li>
+                    <li class="breadcrumb-item"><a href="?page=pangkatread">Absen</a></li>
                 </ol>
             </div>
         </div>
@@ -88,7 +88,7 @@ if (isset($_POST['pulang'])) {
         </div>
     </div>
 </section>
-<?php if ($_SESSION['peran'] == 'user') : ?>
+<?php if ($_SESSION['peran'] == 'mahasiswa') : ?>
     <section class="content">
         <div class="card">
             <div class="card-header">
@@ -110,19 +110,19 @@ if (isset($_POST['pulang'])) {
                         <?php while ($riwayat = $query2->fetch_object()) : ?>
                             <?php $pegawai = $mysqli->query("SELECT * FROM pegawai WHERE id_pegawai='$riwayat->id_pegawai'")->fetch_object() ?>
                             <tr>
-                                <td><?= $no ?></td>
-                                <td><?= $pegawai->nm_pegawai ?></td>
-                                <td><?= $riwayat->jam_masuk ?></td>
-                                <td><?= $riwayat->jam_pulang ?></td>
-                                <td><?= $riwayat->tanggal ?></td>
+                                    <td><?= $no ?></td>
+                                    <td><?= $pegawai->nm_pegawai ?></td>
+                                    <td><?= $riwayat->jam_masuk ?></td>
+                                    <td><?= $riwayat->jam_pulang ?></td>
+                                    <td><?= $riwayat->tanggal ?></td>
                             </tr>
                             <?php ++$no ?>
-                        <?php endwhile ?>
+                    <?php
+                            endwhile ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </section>
-
 <?php endif ?>
 <?php include_once "partials/scripts.php" ?>

@@ -23,39 +23,69 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item<?= $menu == 'jabatanread' || $menu == 'pegawairead' ? ' menu-open' : '' ?>">
-                    <a href="#"
-                        class="nav-link<?= $menu == 'jabatanread' || $menu == 'pegawairead' ? ' active' : '' ?>">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
-                            Master Data
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav-treeview">
-                        <li class="nav-item">
-                            <a href="?page=jabatanread" class="nav-link<?= $menu == 'jabatanread' ? ' active' : '' ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Jabatan</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="?page=pegawairead" class="nav-link<?= $menu == 'pegawairead' ? ' active' : '' ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Pegawai</p>
-                            </a>
-                        </li>
+                <?php
+                if ($_SESSION['peran'] == 'admin') {
+                ?>
+                    <li class="nav-item<?= $menu == 'jabatanread' || $menu == 'pegawairead' ? ' menu-open' : '' ?>">
+                        <a href="#" class="nav-link<?= $menu == 'jabatanread' || $menu == 'pegawairead' ? ' active' : '' ?>">
+                            <i class="nav-icon fas fa-copy"></i>
+                            <p>
+                                Master Data
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav-treeview">
+                            <li class="nav-item">
+                                <a href="?page=jabatanread" class="nav-link<?= $menu == 'jabatanread' ? ' active' : '' ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Jabatan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="?page=pegawairead" class="nav-link<?= $menu == 'pegawairead' ? ' active' : '' ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Pegawai</p>
+                                </a>
+                            </li>
+                        </ul>
 
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="?page=ab" class="nav-link<?= $menu == 'ab' ? ' active' : '' ?>">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>
-                            Presensi <?= $_SESSION['peran'] == 'admin' ? 'Karyawan' : 'Mahasiswa' ?>
-                        </p>
-                    </a>
-                </li>
+                    </li>
+                <?php }
+                if ($_SESSION['peran'] == 'admin') {
+                ?>
+                    <li class="nav-item">
+                        <a href="?page=cab" class="nav-link<?= $menu == 'cab' ? ' active' : '' ?>">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                Data Absensi
+                            </p>
+                        </a>
+                    </li>
+                <?php }
+
+                if ($_SESSION['peran'] == 'user') {
+                ?>
+                    <li class="nav-item">
+                        <a href="?page=ab" class="nav-link<?= $menu == 'ab' ? ' active' : '' ?>">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                Presensi Karyawan
+                            </p>
+                        </a>
+                    </li>
+
+                <?php }
+                if ($_SESSION['peran'] == 'pimpinan') {
+                ?>
+                    <li class="nav-item">
+                        <a href="?page=pimpinan" class="nav-link<?= $menu == 'pimpinan' ? ' active' : '' ?>">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                Presensi Pimpinan
+                            </p>
+                        </a>
+                    </li>
+                <?php } ?>
                 <li class="nav-item">
                     <a href="?page=cutiread" class="nav-link<?= $menu == 'cutiread' ? ' active' : '' ?>">
                         <i class="nav-icon fas fa-envelope"></i>
@@ -86,14 +116,6 @@
                             <a href="?page=userread" class="nav-link<?= $menu == 'userread' ? ' active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>User</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav-treeview">
-                        <li class="nav-item">
-                            <a href="?page=ttdread" class="nav-link<?= $menu == 'ttdread' ? ' active' : '' ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tanda Tangan</p>
                             </a>
                         </li>
                     </ul>

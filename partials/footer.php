@@ -1,11 +1,11 @@
-  <footer class="main-footer">
+  <!-- <footer class="main-footer">
       <div class="float-right d-none d-sm-block">
           <b id="MyClockDisplay"></b>
       </div>
 
       <strong>Copyright &copy; 2022 <a href="#">Taufik Hidayat</a>.</strong> All rights reserved.
   </footer>
-  </div>
+  </div> -->
 
 
 

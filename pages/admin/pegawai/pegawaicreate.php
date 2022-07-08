@@ -128,10 +128,10 @@ if (isset($_POST['button_create'])) {
                                                 ?>
                                         </select>
                                 </div>
-                                
+
                                 <div class="form-group">
                                         <label for="jk">Jenis Kelamin</label>
-                                        <select class="form-control" name="jk" >
+                                        <select class="form-control" name="jk">
                                                 <option value="">--Pilih Jenis Kelamin--</option>
                                                 <option value="L">Laki-Laki</option>
                                                 <option value="P">Perempuan</option>
@@ -151,9 +151,9 @@ if (isset($_POST['button_create'])) {
                                 </div>
                                 <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="text" class="form-control" name="email" required>  
+                                        <input type="text" class="form-control" name="email" required>
                                 </div>
-                             
+
                                 <div class="form-group">
                                         <label for="username">Username</label>
                                         <input type="text" class="form-control" name="username" required>
@@ -168,7 +168,7 @@ if (isset($_POST['button_create'])) {
                                 </div>
                                 <div class="form-group">
                                         <label for="peran">Peran</label>
-                                        <select class="form-control" name="peran" >
+                                        <select class="form-control" name="peran">
                                                 <option value="">--Pilih Peran--</option>
                                                 <option value="admin">admin</option>
                                                 <option value="pimpinan">pimpinan</option>

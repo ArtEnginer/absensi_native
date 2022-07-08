@@ -1,12 +1,12 @@
 <?php
-if (isset($_GET['id_jabatan'])) {
-        $id = $_GET['id_jabatan'];
+if (isset($_GET['id_user'])) {
+        $id = $_GET['id_user'];
         $database = new Database();
         $db = $database->getConnection();
 
-        $deleteSql = "DELETE FROM jabatan WHERE id_jabatan = ?";
+        $deleteSql = "DELETE FROM mahasiswa WHERE id_user = ?";
         $stmt = $db->prepare($deleteSql);
-        $stmt->bindParam(1, $_GET['id_jabatan']);
+        $stmt->bindParam(1, $_GET['id_user']);
         if ($stmt->execute()) {
                 $_SESSION['hasil'] = true;
                 $_SESSION['pesan'] = "Berhasil dihapus";
@@ -14,5 +14,5 @@ if (isset($_GET['id_jabatan'])) {
                 $_SESSION['hasil'] = false;
                 $_SESSION['pesan'] = "Gagal dihapus";
         }
-        echo "<meta http-equiv='refresh' content='0;url=?page=jabatanread'>";
+        echo "<meta http-equiv='refresh' content='0;url=?page=usermhread'>";
 }

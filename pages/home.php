@@ -46,21 +46,21 @@ include 'partials/scripts.php';
       <!-- ./col -->
       <div class="col-lg-3 col-6">
         <!-- small box -->
-        <!-- <div class="small-box bg-success">
+        <div class="small-box bg-success">
           <div class="inner">
             <?php
-            $user = mysqli_query($konek, "SELECT * FROM surat_masuk ");
+            $user = mysqli_query($konek, "SELECT * FROM tb_absen ");
             $row1 = mysqli_num_rows($user);
             ?>
             <h3><?php echo $row1; ?></h3>
 
-            <p>Surat Masuk</p>
+            <p>Presensi Karyawan</p>
           </div>
           <div class="icon">
-            <i class="fa fa-envelope"></i>
+            <i class="fa fa-users"></i>
           </div>
-          <a href="?page=smread" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-        </div> -->
+          <a href="?page=ab" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
       </div>
       <!-- ./col -->
       <div class="col-lg-3 col-6">
@@ -68,17 +68,17 @@ include 'partials/scripts.php';
         <div class="small-box bg-warning">
           <div class="inner">
             <?php
-            $user = mysqli_query($konek, "SELECT * FROM surat_keluar ");
+            $user = mysqli_query($konek, "SELECT * FROM tb_absenpin ");
             $row1 = mysqli_num_rows($user);
             ?>
             <h3><?php echo $row1; ?></h3>
 
-            <p>Surat Keluar</p>
+            <p>Presensi pimpinan</p>
           </div>
           <div class="icon">
-            <i class="fa fa-envelope"></i>
+            <i class="fa fa-users"></i>
           </div>
-          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="mhs" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -87,15 +87,33 @@ include 'partials/scripts.php';
         <div class="small-box bg-danger">
           <div class="inner">
             <?php
-            $user = mysqli_query($konek, "SELECT * FROM surat_perintah ");
+            $user = mysqli_query($konek, "SELECT * FROM surat_cuti ");
             $row1 = mysqli_num_rows($user);
             ?>
             <h3><?php echo $row1; ?></h3>
 
-            <p>Surat Perintah</p>
+            <p>Cuti</p>
           </div>
           <div class="icon">
             <i class="fa fa-envelope"></i>
+          </div>
+          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-secondary">
+          <div class="inner">
+            <?php
+            $user = mysqli_query($konek, "SELECT * FROM kegiatan ");
+            $row1 = mysqli_num_rows($user);
+            ?>
+            <h3><?php echo $row1; ?></h3>
+
+            <p>Kegiatan</p>
+          </div>
+          <div class="icon">
+            <i class="fa fa-pen"></i>
           </div>
           <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>

@@ -25,14 +25,14 @@
                 ?>
                 <div class="row mb-2">
                         <div class="col-sm-6">
-                                <h1 class="m-0">Kegiatan</h1>
+                                <h1 class="m-0"> User</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
                                         <li class="breadcrumb-item">
                                                 <a href="?page=home"> Home</a>
                                         </li>
-                                        <li class="breadcrumb-item">Kegiatan</li>
+                                        <li class="breadcrumb-item"> User</li>
                                 </ol>
                         </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -40,39 +40,24 @@
 </div>
 <div class="content">
         <div class="card">
-                <div class="card-header">
-                        <h3 class="card-title">Data Kegiatan</h3>
-                        <a href="?page=kcreate" class="btn btn-success btn-sm float-right">
-                                <i class="fa fa-plus-circle"></i> Tambah Data</a>
-                        <a href="?page=kgview" class="btn btn-primary btn-sm float-right mr-2">
-                                <i class="fa fa-print"></i> Cetak Laporan</a>
-                </div>
 
                 <div class="card-body">
                         <table id="mytable" class="table table-bordered table-hover">
                                 <thead>
                                         <tr class="text-center">
                                                 <th>No</th>
-                                                <th>Nomor</th>
-                                                <th>Judul Kegiatan</th>
-                                                <th>Nama Pegawai</th>
-                                                <th>Jabatan</th>
-                                                <th>Lokasi</th>
-                                                <th>Waktu</th>
-                                                <th>Sumber Dana</th>
+                                                <th>Nama Pengguna</th>
+                                                <th>Username</th>
+                                                <th>Password</th>
                                                 <th>Tindakan</th>
                                         </tr>
                                 </thead>
                                 <tfoot>
                                         <tr class="text-center">
                                                 <th>No</th>
-                                                <th>Nomor</th>
-                                                <th>Judul Kegiatan</th>
-                                                <th>Nama Pegawai</th>
-                                                <th>Jabatan</th>
-                                                <th>Lokasi</th>
-                                                <th>Waktu</th>
-                                                <th>Sumber Dana</th>
+                                                <th>Nama Pengguna</th>
+                                                <th>Username</th>
+                                                <th>Password</th>
                                                 <th>Tindakan</th>
                                         </tr>
                                 </tfoot>
@@ -80,9 +65,9 @@
                                         <?php
                                         $database = new Database();
                                         $db = $database->getConnection();
-                                        $selectSql = "SELECT * FROM kegiatan
-                                        INNER JOIN pegawai ON pegawai.id_pegawai = kegiatan.id_pegawai
-                                        INNER JOIN jabatan ON pegawai.id_jabatan = jabatan.id_jabatan";
+
+                                        $selectSql = "SELECT * FROM tb_user
+                                        INNER JOIN mahasiswa ON mahasiswa.id_user = tb_user.id_user ";
                                         $stmt = $db->prepare($selectSql);
                                         $stmt->execute();
                                         $no = 1;
@@ -90,21 +75,14 @@
                                         ?>
                                                 <tr class="text-center">
                                                         <td><?php echo $no++ ?></td>
-                                                        <td><?php echo $row['nomor'] ?></td>
-                                                        <td><?php echo $row['judul'] ?></td>
-                                                        <td><?php echo $row['nm_pegawai'] ?></td>
-                                                        <td><?php echo $row['nm_jabatan'] ?></td>
-                                                        <td><?php echo $row['lokasi'] ?></td>
-                                                        <td><?php echo $row['waktu'] ?></td>
-                                                        <td><?php echo $row['dana'] ?></td>
+                                                        <td><?php echo $row['nm_mahasiswa'] ?></td>
+                                                        <td><?php echo $row['username'] ?></td>
+                                                        <td><?php echo $row['password'] ?></td>
                                                         <td>
-                                                                <a href="?page=kgcetak&id_kegiatan=<?php echo $row['id_kegiatan'] ?>" class="btn btn-primary btn-sm mr-1">
-                                                                        <i class="fa fa-print" title="Cetak"></i>
-                                                                </a>
-                                                                <a href="?page=kupdate&id_kegiatan=<?php echo $row['id_kegiatan'] ?>" class="btn btn-primary btn-sm mr-1">
+                                                                <a href="?page=usermhupdate&id_user=<?php echo $row['id_user'] ?>" class="btn btn-primary btn-sm mr-1">
                                                                         <i class="fa fa-edit"></i> Ubah
                                                                 </a>
-                                                                <a href="?page=kdelete&id_kegiatan=<?php echo $row['id_kegiatan'] ?>" class="btn btn-danger btn-sm" onClick="javascript: return confirm('Konfirmasi data akan dihapus?');">
+                                                                <a href="?page=usermhdelete&id_user=<?php echo $row['id_user'] ?>" class="btn btn-danger btn-sm" onClick="javascript: return confirm('Konfirmasi data akan dihapus?');">
                                                                         <i class="fa fa-trash"></i> Hapus
                                                                 </a>
                                                         </td>
