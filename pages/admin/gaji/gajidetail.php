@@ -10,7 +10,6 @@ if ($result = $mysqli->query("SELECT * FROM gaji INNER JOIN pegawai ON gaji.id_p
     $gaji = $obj;
     $result->free_result();
 }
-var_dump($gaji);
 $mysqli->close();
 ?>
 <div class="content-header">
@@ -37,10 +36,12 @@ $mysqli->close();
     <div class="card">
         <div class="card-header">
             <h3 class="card-title"> Detail Gaji <?=$gaji->nm_pegawai?></h3>
-            <a href="?page=gajicreate" class="btn btn-success btn-sm float-right">
+            <a href="#!" class="btn btn-success btn-sm float-right mx-2" onclick="printDiv('slipgaji')">
                 <i class="fa fa-print"></i> Print</a>
+            <a href="#!" class="btn btn-danger btn-sm float-right mx-2">
+                <i class="fa fa-print"></i> Kembali</a>
         </div>
-        <div class="card-body">
+        <div class="card-body" id="slipgaji">
             <div class="row">
                 <div class="col text-end">
                     <p>Slip Gaji <?=date('F Y')?></p>
@@ -189,7 +190,13 @@ $mysqli->close();
                     </div>
                 </div>
             </div>
-            .row.mt-4
+            <div class="row mt-4">
+                <div class="col text-end">
+                    <p class="mb-0">Jakarta, <?=date('d F Y')?></p>
+                    <p class="mb-6">Yang Menerima</p>
+                    <p class="mt-6"><strong>(<?=$gaji->nm_pegawai?>)</strong></p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

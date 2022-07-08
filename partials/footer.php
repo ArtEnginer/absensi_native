@@ -14,6 +14,7 @@
   <script type="text/javascript" src="dist/datatables/vfs_fonts.js"></script>
   <script type="text/javascript" src="dist/datatables/datatables.min.js">
   </script>
+  <script src="dist/js/printThis.js"></script>
   <script src="dist/js/main.js"></script>
   <script>
 function showTime() {

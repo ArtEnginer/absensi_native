@@ -10,7 +10,26 @@ const getBase64FromUrl = async (url) => {
     };
   });
 };
+function printDiv(divName) {
+  const koppp = "dist/img/kopsurat.png";
+  var printContents = document.getElementById(divName).innerHTML;
+  var originalContents = document.body.innerHTML;
 
+  document.body.innerHTML = printContents;
+  const head = document.createElement("div");
+  head.id = "head";
+  head.innerHTML = `<div class="row">
+        <div class="col-md-12"> <img src="${koppp}" width="100%">
+    </div> </div>
+    <div class="row">
+        <div class="col-md-12">
+        <h1 style="text-align:center; font-size:20px;">Laporan Absensi Karyawan
+
+        </h1>
+        </div> </div>`;
+  $(document.body).prepend(head);
+  $(document.body).printThis();
+}
 $(document).ready(async function () {
   const koppp = await getBase64FromUrl("dist/img/kopsurat.png");
 
