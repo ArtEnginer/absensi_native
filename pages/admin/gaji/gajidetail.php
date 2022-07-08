@@ -38,8 +38,8 @@ $mysqli->close();
             <h3 class="card-title"> Detail Gaji <?=$gaji->nm_pegawai?></h3>
             <a href="#!" class="btn btn-success btn-sm float-right mx-2" onclick="printDiv('slipgaji')">
                 <i class="fa fa-print"></i> Print</a>
-            <a href="#!" class="btn btn-danger btn-sm float-right mx-2">
-                <i class="fa fa-print"></i> Kembali</a>
+            <a href="?page=gaji" class="btn btn-danger btn-sm float-right mx-2">
+                <i class="fa fa-arrow-left"></i> Kembali</a>
         </div>
         <div class="card-body" id="slipgaji">
             <div class="row">
