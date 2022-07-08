@@ -23,12 +23,14 @@ function printDiv(divName) {
     </div> </div>
     <div class="row">
         <div class="col-md-12">
-        <h1 style="text-align:center; font-size:20px;">Laporan Absensi Karyawan
+        <h1 style="text-align:center; font-size:20px;">Slip Gaji Karyawan
 
         </h1>
         </div> </div>`;
   $(document.body).prepend(head);
-  $(document.body).printThis();
+  setTimeout(() => {
+    window.print();
+  }, 1000);
 }
 $(document).ready(async function () {
   const koppp = await getBase64FromUrl("dist/img/kopsurat.png");
