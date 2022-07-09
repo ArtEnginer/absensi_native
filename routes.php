@@ -150,6 +150,14 @@ if (isset($_GET['page'])) {
                         file_exists('pages/admin/gaji/gajidetail.php') ? include
                                 'pages/admin/gaji/gajidetail.php' : include "pages/404.php";
                         break;
+                case 'gajiupdate':
+                        file_exists('pages/admin/gaji/gajiupdate.php') ? include
+                                'pages/admin/gaji/gajiupdate.php' : include "pages/404.php";
+                        break;
+                case 'gajidelete':
+                        file_exists('pages/admin/gaji/gajidelete.php') ? include
+                                'pages/admin/gaji/gajidelete.php' : include "pages/404.php";
+                        break;
                         // kegiatan
                 case 'kread':
                         file_exists('pages/admin/kegiatan/kegiatanread.php') ? include

@@ -1,4 +1,4 @@
-<?php include_once "partials/cssdatatables.php"?>
+<?php include_once "partials/cssdatatables.php" ?>
 <?php include "database/sql.php";
 $gaji = [];
 if ($result = $mysqli->query("SELECT * FROM gaji INNER JOIN pegawai ON gaji.id_pegawai = pegawai.id_pegawai")) {
@@ -12,31 +12,41 @@ if ($result = $mysqli->query("SELECT * FROM gaji INNER JOIN pegawai ON gaji.id_p
 }
 
 $mysqli->close();
+
+// get aksi from url
+
+// if aksi delete then delete data from database
+if (isset($_GET['aksi']) && $_GET['aksi'] == 'delete') {
+    $id = $_GET['id'];
+    $sql = "DELETE FROM gaji WHERE id = '$id'";
+    $mysqli->query($sql);
+    echo "<meta http-equiv='refresh' content='0;url=?page=gaji'>";
+}
 ?>
 <div class="content-header">
     <div class="container-fluid">
         <?php
-if (isset($_SESSION["hasil"])) {
-    if ($_SESSION["hasil"]) {
+        if (isset($_SESSION["hasil"])) {
+            if ($_SESSION["hasil"]) {
         ?>
-        <div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-            <h5><i class="icon fas fa-check"></i> Berhasil</h5>
-            <?php echo $_SESSION['pesan'] ?>
-        </div>
-        <?php } else {?>
-        <div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-            <h5><i class="icon fas fa-ban"></i> Gagal</h5>
-            <?php echo $_SESSION['pesan'] ?>
-        </div>
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fas fa-check"></i> Berhasil</h5>
+                    <?php echo $_SESSION['pesan'] ?>
+                </div>
+            <?php } else { ?>
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fas fa-ban"></i> Gagal</h5>
+                    <?php echo $_SESSION['pesan'] ?>
+                </div>
 
         <?php
-}
-    unset($_SESSION['hasil']);
-    unset($_SESSION['pesan']);
-}
-?>
+            }
+            unset($_SESSION['hasil']);
+            unset($_SESSION['pesan']);
+        }
+        ?>
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1 class="m-0"> Gaji</h1>
@@ -72,30 +82,38 @@ if (isset($_SESSION["hasil"])) {
                 </thead>
                 <tbody>
                     <?php
-$no = 1;
-foreach ($gaji as $gj): ?>
-                    <tr class="text-center">
-                        <td><?=$no++?></td>
-                        <td><?=$gj->tanggal?></td>
-                        <td><?=$gj->nm_pegawai?></td>
-                        <td><?="Rp. " . number_format($gj->gaji_bersih)?>
-                        </td>
-                        <td>
-                            <a href="?page=gajidetail&id=<?=$gj->id?>" class="btn btn-primary btn-sm mr-1">
-                                <i class="fa fa-eye"></i> Detail
-                            </a>
-                        </td>
-                    </tr>
-                    <?php endforeach?>
+                    $no = 1;
+                    foreach ($gaji as $gj) : ?>
+                        <tr class="text-center">
+                            <td><?= $no++ ?></td>
+                            <td><?= $gj->tanggal ?></td>
+                            <td><?= $gj->nm_pegawai ?></td>
+                            <td><?= "Rp. " . number_format($gj->gaji_bersih) ?>
+                            </td>
+                            <td>
+                                <a href="?page=gajidetail&id=<?= $gj->id ?>" class="btn btn-info btn-sm mr-1">
+                                    <i class="fa fa-eye"></i> 
+                                </a>
+                                <a href="?page=gajiupdate&id=<?php echo $gj->id ?>" class="btn btn-primary btn-sm mr-1">
+                                    <i class="fa fa-edit"></i> 
+                                </a>
+                                <a href="?page=gajidelete&id=<?php echo $gj->id ?>" class="btn btn-danger btn-sm" onClick="javascript: return confirm('Konfirmasi data akan dihapus?');">
+                                    <i class="fa fa-trash"></i> 
+                                </a>
+
+
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-<?php include_once "partials/scripts.php"?>
-<?php include_once "partials/scripstdatatables.php"?>
+<?php include_once "partials/scripts.php" ?>
+<?php include_once "partials/scripstdatatables.php" ?>
 <script>
-$(function() {
-    $('#mytable').DataTable()
-});
+    $(function() {
+        $('#mytable').DataTable()
+    });
 </script>
