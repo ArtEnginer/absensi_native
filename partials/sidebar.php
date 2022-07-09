@@ -76,7 +76,7 @@
                 </li>
 
                 <?php } ?>
-                <?php if ($_SESSION['peran'] == 'pimpinan') {
+                <?php if ($_SESSION['peran'] == 'pimpinan' ) {
                 ?>
                 <li class="nav-item">
                     <a href="?page=pimpinan" class="nav-link<?= $menu == 'pimpinan' ? ' active' : '' ?>">
@@ -103,7 +103,7 @@
                         </p>
                     </a>
                 </li>
-                <?php if ($_SESSION['peran'] == 'pimpinan') {
+                <?php if ($_SESSION['peran'] == 'pimpinan' || $_SESSION['peran'] == 'admin') {
                 ?>
                 <li class="nav-item">
                     <a href="?page=gaji" class="nav-link<?= $menu == 'gaji' ? ' active' : '' ?>">
