@@ -104,7 +104,7 @@
                                                                 <a href="?page=pupdate&id_sp=<?php echo $row['id_sp'] ?>" class="btn btn-primary btn-sm mr-1">
                                                                         <i class="fa fa-edit"></i>
                                                                 </a>
-                                                                <a href="?page=kdelete&id_sp=<?php echo $row['id_sp'] ?>" class="btn btn-danger btn-sm" onClick="javascript: return confirm('Konfirmasi data akan dihapus?');">
+                                                                <a href="?page=pdelete&id=<?php echo $row['id_sp'] ?>" class="btn btn-danger btn-sm" onClick="javascript: return confirm('Konfirmasi data akan dihapus?');">
                                                                         <i class="fa fa-trash"></i>
                                                                 </a>
                                                         </td>

@@ -1,12 +1,12 @@
 <?php
-if (isset($_GET['id_kegiatan'])) {
-        $id = $_GET['id_kegiatan'];
+if (isset($_GET['id'])) {
+        $id = $_GET['id'];
         $database = new Database();
         $db = $database->getConnection();
 
-        $deleteSql = "DELETE FROM kegiatan WHERE id_kegiatan = ?";
+        $deleteSql = "DELETE FROM tb_peringatan WHERE id_sp = ?";
         $stmt = $db->prepare($deleteSql);
-        $stmt->bindParam(1, $_GET['id_kegiatan']);
+        $stmt->bindParam(1, $id);
         if ($stmt->execute()) {
                 $_SESSION['hasil'] = true;
                 $_SESSION['pesan'] = "Berhasil dihapus";
@@ -14,5 +14,5 @@ if (isset($_GET['id_kegiatan'])) {
                 $_SESSION['hasil'] = false;
                 $_SESSION['pesan'] = "Gagal dihapus";
         }
-        echo "<meta http-equiv='refresh' content='0;url=?page=kread'>";
+        echo "<meta http-equiv='refresh' content='0;url=?page=pread'>";
 }

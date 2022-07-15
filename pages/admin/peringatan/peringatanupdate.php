@@ -63,19 +63,6 @@ if (isset($_GET['id_sp'])) {
                                                 <input type="text" class="form-control" name="no_surat" value="<?php echo $row['no_surat'] ?>" readonly>
                                         </div>
                                         <div class="form-group">
-                                                <label for="id_sp">Tanggal Surat</label>
-                                                <input type="hidden" class="form-control" name="id_sp" value="<?php echo $row['id_sp'] ?>">
-                                                <input type="date" class="form-control" name="tgl_surat" value="<?php echo $row['tgl_surat'] ?>" required>
-                                        </div>
-                                        <div class="form-group">
-                                                <label for="sp">SP</label>
-                                                <input type="text" class="form-control" name="sp" value="<?php echo $row['sp'] ?>" required>
-                                        </div>
-                                        <div class="form-group">
-                                                <label for="pelanggaran">Pelanggaran</label>
-                                                <input type="text" class="form-control" name="pelanggaran" value="<?php echo $row['pelanggaran'] ?>" required>
-                                        </div>
-                                        <div class="form-group">
                                                 <label for="id">Pegawai</label>
                                                 <select class="form-control" name="id_pegawai">
                                                         <option value="">--Pilih Pegawai--</option>
@@ -88,11 +75,29 @@ if (isset($_GET['id_sp'])) {
                                                         $stmt_karyawan->execute();
 
                                                         while ($row_karyawan = $stmt_karyawan->fetch(PDO::FETCH_ASSOC)) {
-                                                                echo "<option value=\"" . $row_karyawan["id_pegawai"] . "\">" . $row_karyawan["nm_pegawai"] . "</option>";
+                                                                if ($row_karyawan['id_pegawai'] == $row['id_pegawai']) {
+                                                                        echo "<option value='" . $row_karyawan['id_pegawai'] . "' selected>" . $row_karyawan['nm_pegawai'] . "</option>";
+                                                                } else {
+                                                                        echo "<option value='" . $row_karyawan['id_pegawai'] . "'>" . $row_karyawan['nm_pegawai'] . "</option>";
+                                                                }
                                                         }
                                                         ?>
                                                 </select>
                                         </div>
+                                        <div class="form-group">
+                                                <label for="id_sp">Tanggal Surat</label>
+                                                <input type="hidden" class="form-control" name="id_sp" value="<?php echo $row['id_sp'] ?>">
+                                                <input type="date" class="form-control" name="tgl_surat" value="<?php echo $row['tgl_surat'] ?>" required>
+                                        </div>
+                                        <div class="form-group">
+                                                <label for="sp">SP</label>
+                                                <input type="text" class="form-control" name="sp" value="<?php echo $row['sp'] ?>" required>
+                                        </div>
+                                        <div class="form-group">
+                                                <label for="pelanggaran">Pelanggaran</label>
+                                                <input type="text" class="form-control" name="pelanggaran" value="<?php echo $row['pelanggaran'] ?>" required>
+                                        </div>
+
 
                                         <a href="?page=jabatanread" class="btn btn-danger btn-sm float-right">
                                                 <i class="fa fa-times"></i> Batal

@@ -66,17 +66,23 @@ if (isset($_POST['button_create'])) {
                                         <?php
                                         $database = new Database();
                                         $db = $database->getConnection();
+                                        $sql = "SELECT * FROM tb_peringatan ORDER BY id_sp DESC LIMIT 1";
+                                        $stmt = $db->prepare($sql);
+                                        $stmt->execute();
+                                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                                        // count
+                                        $count = $stmt->rowCount();
+                                        if ($count == 0) {
+                                                $no_surat = "SKP-0001";
+                                        } else {
+                                                $no_surat = $row['no_surat'];
+                                                $no_surat = explode("-", $no_surat);
+                                                $no_surat = $no_surat[1] + 1;
+                                                $no_surat = "SKP-" . $no_surat;
+                                        }
 
-                                        $sql = $db->prepare("SELECT max(no_surat) as no_surat FROM tb_peringatan");
-                                        $sql->execute();
-                                        $hasil = $sql->fetch();
-                                        $kode = $hasil["no_surat"];
-                                        $noUrut = (int) substr($kode, 3);
-                                        $noUrut++;
-                                        $char = "PGT-";
-                                        $noAgenda = $char . sprintf("%04s", $noUrut);
                                         ?>
-                                        <input type="text" class="form-control" name="no_surat" value="<?php echo $noAgenda ?>" readonly>
+                                        <input type="text" class="form-control" name="no_surat" value="<?php echo $no_surat ?>" readonly>
                                 </div>
 
                                 <div class="form-group">

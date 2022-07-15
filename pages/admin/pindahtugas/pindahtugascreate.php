@@ -69,14 +69,18 @@ if (isset($_POST['button_create'])) {
                     $stmt = $db->prepare($sql);
                     $stmt->execute();
                     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                    $id_pindah = $row['id_pindah'];
-                    if($id_pindah == null){
-                        $id_pindah ='SPT-' . 1;
-                    }else{
-                        $id_pindah ='SPT-' . ($id_pindah + 1);
+                    // count
+                    $count = $stmt->rowCount();
+                    if ($count == 0) {
+                        $no_surat = "SKPT-0001";
+                    } else {
+                        $no_surat = $row['no_surat'];
+                        $no_surat = explode("-", $no_surat);
+                        $no_surat = $no_surat[1] + 1;
+                        $no_surat = "SKPT-" . $no_surat;
                     }
                     ?>
-                    <input type="text" class="form-control" name="no_surat" value="<?php echo $id_pindah ?>" readonly>
+                    <input type="text" class="form-control" name="no_surat" value="<?php echo $no_surat?>" readonly>
                 </div>
 
                 <div class="form-group">
@@ -106,7 +110,7 @@ if (isset($_POST['button_create'])) {
                     <textarea class="form-control" name="alasan" required></textarea>
                 </div>
 
-                <a href="?page=pread" class="btn btn-danger btn-sm float-right">
+                <a href="?page=ptugasread" class="btn btn-danger btn-sm float-right">
                     <i class="fa fa-times"></i> Batal
                 </a>
                 <button type="submit" name="button_create" class="btn btn-success btn-sm float-right">
